@@ -1,0 +1,39 @@
+baseurl = "https://www.premkit.com"
+languageCode = "en-us"
+title = "PremKit"
+theme = "hugo-theme-premkit"
+metadataformat = "yaml"
+
+[params]
+  description = "PremKit."
+  copyright = "Replicated, Inc."
+  edit_link = "https://github.com/premkit/www/edit/master/docs/"
+  search = true
+
+[[menu.main]]
+  name = "Getting Started"
+  weight = 1000
+  identifier = "getting-started"
+  url = "/docs/getting-started/"
+  pre = "<i class='fa fa-leanpub'></i> "
+
+[[menu.main]]
+  name = "PremKit"
+  weight = 2000
+  identifier = "premkit"
+  url = "/docs/premkit/"
+  pre = "<i class='fa fa-th-large'></i> "
+
+[[menu.main]]
+  name = "Healthcheck"
+  weight = 3000
+  identifier = "healthcheck"
+  url = "/docs/healthcheck/"
+  pre = "<i class='fa fa-medkit'></i> "
+
+[[menu.main]]
+  name = "Licensing"
+  weight = 4000
+  identifier = "licensing"
+  url = "/docs/licensing/"
+  pre = "<i class='fa fa-file-text-o'></i> "

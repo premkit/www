@@ -1,0 +1,41 @@
+{{ $currentNode := . }}
+
+<nav id="sidebar">
+  <div id="header-wrapper">
+    <div id="header">
+      {{ partial "logo.html" . }}
+      {{ if .Site.Params.search }}
+      <div class="searchbox">
+        <label for="search-by"><i class="fa fa-search"></i></label>
+        <input id="search-by" type="text" placeholder="Search Documentation">
+        <span data-search-clear=""><i class="fa fa-close"></i></span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+      {{ $page := . }}
+      {{ range .Site.Menus.main.ByWeight }}
+      {{ $.Scratch.Set "currentMenuEntry" . }}
+      <li class="dd-item">
+        <a href="{{ .URL }}">{{ .Pre }}{{ .Name }}</a>
+        {{ if and (.HasChildren) ($currentNode.IsPage) }}
+        {{ $currentDir := printf "/%s" $currentNode.Source.Dir }}
+        {{ if eq .URL $currentDir }}
+        <ul>
+          {{ range .Children }}
+            {{ $.Scratch.Set "currentMenuEntry" . }}
+            {{ partial "menu_child" $currentNode }}
+          {{ end }}
+        </ul>
+        {{ end }}
+        {{ end }}
+      </li>
+      {{ end }}
+    </ul>
+    <section id="footer">
+    </section>
+  </div>
+</nav>

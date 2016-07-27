@@ -1,0 +1,25 @@
+logLevel = "INFO"
+defaultEntryPoints = ["http"]
+
+[web]
+address = ":8080"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+[file]
+
+[frontends]
+  [frontends.www]
+  backend = "www"
+    [frontends.www.routes.www]
+    rule = "PathPrefix: /"
+
+[backends]
+  [backends.www]
+    [backends.www.servers.server1]
+    url = "http://172.16.142.111:1313"
+    weight = 1
+
+

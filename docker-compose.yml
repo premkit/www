@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  premkit-www:
+    build:
+      context: .
+      dockerfile: ./Dockerfiles/Dockerfile.hugo
+    ports:
+      - "8000:1313"
+    environment:
+      - HUGO_WATCH=true
+      - HUGO_BASEURL=http://localhost:8000/
+    volumes:
+      - ./site:/src
+      - ./docs:/src/content
+      - ./hugo-config/premkit.toml:/src/config.toml
+    networks:
+      internal:
+        ipv4_address: 172.16.142.111
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.142.0/24
+        gateway: 172.16.142.254
+  default:
+    external:
+      name: bridge
